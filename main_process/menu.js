@@ -1,8 +1,6 @@
-const { app, Menu, dialog, shell } = require("electron");
+const { app, Menu, shell } = require("electron");
 const isMac = process.platform === 'darwin';
-
-import JsonStore from './JsonStore';
-const fs = require('fs');
+import FileManager from './FileManager';
 
 const Action = {
   label: 'Action',
@@ -11,21 +9,20 @@ const Action = {
       label: 'Run Code',
       accelerator: 'CmdOrCtrl+Enter',
       click: (menuItem, browserWindow, event) => {
-        let currPath = JsonStore.getPropVal('current-path') || (__dirname + '/temp');
-        browserWindow.webContents.send('run-code', currPath);
+        browserWindow.webContents.send('run-code', FileManager.getCurrPathFile());
       }
     }
   ]
 };
 
-const FileManager = {
+const MenuFiles = {
   label: 'File',
   submenu: [
     {
       label: 'New File',
       accelerator: 'CmdOrCtrl+n',
       click: (menuItem, browserWindow, event) => {
-        browserWindow.webContents.send('new-file', 'new-file')
+        browserWindow.webContents.send('new-file', 'new-file');
       }
     },
     { type: 'separator' },
@@ -33,28 +30,24 @@ const FileManager = {
       label: 'Open File',
       accelerator: 'CmdOrCtrl+l',
       click: async (menuItem, browserWindow, event) => {
-        let result = await dialog.showOpenDialog();
-        result = result.filePaths[0];
-
-        JsonStore.pushOrUpdate('current-path', result);
-
-        fs.readFile(result, { encoding: 'utf8' }, (err, data) => {
-          browserWindow.webContents.send('set-content-file', data);
-        });
+        let data = await FileManager.openFile();
+        browserWindow.webContents.send('set-content-file', data);
       }
     },
     {
       label: 'Save',
       accelerator: 'CmdOrCtrl+s',
-      click: (menuItem, browserWindow, event) => {
-        browserWindow.webContents.send('save-file', 'save-file')
+      click: async (menuItem, browserWindow, event) => {
+        let isSaved = await FileManager.saveFile();
+        browserWindow.webContents.send('save-file', isSaved);
       }
     },
     {
       label: 'Save As..',
       accelerator: 'CmdOrCtrl+Shift+s',
-      click: (menuItem, browserWindow, event) => {
-        browserWindow.webContents.send('save-as-file', 'files')
+      click: async (menuItem, browserWindow, event) => {
+        let isSaved = await FileManager.saveAsFile();
+        browserWindow.webContents.send('save-as-file', isSaved);
       }
     },
     { type: 'separator' },
@@ -79,7 +72,7 @@ const template = [
     ]
   }] : []),
   // { role: 'fileMenu' }
-  FileManager,
+  MenuFiles,
   // { role: 'editMenu' }
   {
     label: 'Edit',

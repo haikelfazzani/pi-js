@@ -1,14 +1,46 @@
 import React from 'react';
+import { useSelector,useDispatch } from 'react-redux';
+import Select from './Select';
+
+const languages = [
+  { lang: 'javascript', ext: '.js' },
+  { lang: 'typescript', ext: '.ts' },
+  { lang: 'html', ext: '.html' }
+];
+
+const fontSizes = ['10px', '12px', '14px', '16px', '18px', '20px', '22px', '24px'];
+const THEMES = ['monokai', 'dracula'];
 
 export default function Footer () {
+
+  const config = useSelector(state => state.EditorReducer.config);
+  const dispatch = useDispatch();
+
+  const onLangChange = (e) => {
+    dispatch({ type: 'SET_MODE_LANG', payload: e.target.value });
+  }
+
+  const onFontChange = (e) => {
+    dispatch({ type: 'SET_FONT_SIZE', payload: e.target.value });
+  }
+
+  const onThemeChange = (e) => {
+    dispatch({ type: 'SET_THEME', payload: e.target.value });
+  }
+
   return <footer className="d-flex-sp">
+
     <div className="d-flex">
+      <p className="boder-right p-15">{config.fontSize}</p>
+      <p className="boder-right p-15">{config.theme}</p>
+      <p className="boder-right p-15">{config.mode}</p>
     </div>
 
     <div className="d-flex">
-      <p class="boder-left p-15">16px</p>
-      <p class="boder-left p-15">dracula</p>
-      <p class="boder-left p-15">Typescript</p>
+      <Select items={languages.map(l => l.lang)} onChange={onLangChange} clx="boder-left p-15" />
+      <Select items={fontSizes} onChange={onFontChange} clx="boder-left p-15" />
+      <Select items={THEMES} onChange={onThemeChange} clx="boder-left p-15" />
     </div>
+
   </footer>;
 }

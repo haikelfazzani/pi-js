@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Editor from './Editor';
+import EditorManager from '../util/EditorManager';
 
 export default function CodeEditor () {
 
+  const config = useSelector(state => state.EditorReducer.config);
   const [state, setState] = useState('');
-
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      let data = await EditorManager.loadFile();
+      setState(data);
+    })();
+  }, []);
 
   useEffect(() => {
     window.ipcRenderer.on('set-content-file', async (channel, data) => {
@@ -15,13 +23,15 @@ export default function CodeEditor () {
     });
   }, []);
 
-  const onCodeChange = (newValue) => {
+  const onCodeChange = async (newValue) => {
     setState(newValue);
     dispatch({ type: 'SET_CODE_VALUE', payload: newValue });
-    window.nodeFs.writeFile(__dirname + 'temp', newValue, { flag: 'w+' }, (err) => {
-      
-    });
+    await EditorManager.writeToTemp(newValue);
   }
 
-  return <Editor value={state} onChange={onCodeChange} />;
+  return <Editor
+    value={state}
+    onChange={onCodeChange}
+    config={{ fontSize: config.fontSize, theme: config.theme }}
+  />;
 }

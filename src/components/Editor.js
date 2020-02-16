@@ -2,18 +2,20 @@ import React from 'react';
 import AceEditor from "react-ace";
 
 import "ace-builds/src-noconflict/mode-typescript";
+import "ace-builds/src-noconflict/mode-html";
 import "ace-builds/src-noconflict/theme-dracula";
+import "ace-builds/src-noconflict/theme-monokai";
 
 import "ace-builds/src-min-noconflict/ext-language_tools";
 
-export default function Editor ({ value, onChange, aceId, readOnly }) {
+export default function Editor ({ value, onChange, aceId, config }) {
 
   return <AceEditor
     mode="typescript"
-    theme="dracula"
+    theme={config.theme}
     onChange={onChange}
     value={value}
-    fontSize={"16px"}
+    fontSize={config.fontSize}
     name={aceId}
     showPrintMargin={false}
     showGutter={true}
@@ -24,7 +26,6 @@ export default function Editor ({ value, onChange, aceId, readOnly }) {
       enableLiveAutocompletion: true,
       showLineNumbers: true,
       tabSize: 2,
-      readOnly: (readOnly || false),
       useWorker: false
     }}
   />;

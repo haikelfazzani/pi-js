@@ -35,8 +35,7 @@ const config = {
     }),
     copy({
       targets: [
-        { src: 'render_process/*', dest: 'dist/' },
-        { src: 'src/store/*', dest: 'dist/' }
+        { src: 'render_process/*', dest: 'dist/' }
       ]
     }),
     //terser()

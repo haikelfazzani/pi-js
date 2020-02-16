@@ -1,3 +1,3 @@
 window.ipcRenderer = require('electron').ipcRenderer;
-window.nodeFs = require('fs');
+window.fsPromises = require('fs').promises;
 window.execFile = require('child_process').execFile;
