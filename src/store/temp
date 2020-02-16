@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>body { color: #fff; }</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+
+function Example() {
+  // Declare a new state variable, which we'll call "count"
+  const [count, setCount] = React.useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+
+let domContainer = document.querySelector('#root');
+ReactDOM.render(<Example />, domContainer);
+</script>
+
+</body>
+</html>

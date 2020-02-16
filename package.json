@@ -1,0 +1,94 @@
+{
+  "name": "picode",
+  "version": "1.0.0",
+  "author": "Haikel Fazzani",
+  "license": "MIT",
+  "description": "A modern and ligtweight code editor",
+  "main": "dist/main.js",
+  "icon": "dist/icons/logo.ico",
+  "scripts": {
+    "watch": "rollup -c -w src/",
+    "build": "rimraf -rf dist/ && rollup -c rollup-main.config.js && rollup -c",
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "asar": false,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "installerIcon": "dist/icons/logo.ico",
+      "uninstallerIcon": "dist/icons/logo.ico",
+      "license": "License"
+    },
+    "directories": {
+      "buildResources": "dist",
+      "output": "build"
+    },
+    "files": [
+      "main.js",
+      "dist/*",
+      "dist/*/**"
+    ]
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haikelfazzani/picode.git"
+  },
+  "keywords": [
+    "code",
+    "editor",
+    "javascript",
+    "typescript",
+    "python"
+  ],
+  "bugs": {
+    "url": "https://github.com/haikelfazzani/picode/issues"
+  },
+  "homepage": "https://github.com/haikelfazzani/picode#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/polyfill": "^7.8.3",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "ace-builds": "^1.4.8",
+    "babel-loader": "^8.0.6",
+    "electron": "^8.0.0",
+    "electron-builder": "^22.3.2",
+    "electron-installer-windows": "^3.0.0",
+    "electron-packager": "^14.2.0",
+    "electron-reloader": "^0.3.0",
+    "electron-winstaller": "^4.0.0",
+    "js-beautify": "^1.10.3",
+    "marked": "^0.8.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-ace": "^8.0.0",
+    "react-dom": "^16.12.0",
+    "react-iframe": "^1.8.0",
+    "react-redux": "^7.1.3",
+    "react-split": "^2.0.7",
+    "redux": "^4.0.5",
+    "rimraf": "^3.0.1",
+    "rollup": "^1.16.3",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-css-only": "^2.0.0",
+    "rollup-plugin-livereload": "^1.0.4",
+    "rollup-plugin-postcss": "^2.0.6",
+    "rollup-plugin-serve": "^1.0.1",
+    "rollup-plugin-terser": "^5.2.0",
+    "rollup-plugin-uglify": "^6.0.2"
+  }
+}
