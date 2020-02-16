@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Editor from './Editor';
 import EditorManager from '../util/EditorManager';
+import js_beautify from 'js-beautify';
 
-export default function CodeEditor () {
+export default function CodeEditor ({ formatCode }) {
 
   const config = useSelector(state => state.EditorReducer.config);
   const [state, setState] = useState('');
@@ -23,10 +24,13 @@ export default function CodeEditor () {
     });
   }, []);
 
-  const onCodeChange = async (newValue) => {
+  useEffect(() => {
+    setState(js_beautify.js(state, { indent_size: 2, space_in_empty_paren: true }));
+  }, [formatCode]);
+
+  const onCodeChange = (newValue) => {
     setState(newValue);
     dispatch({ type: 'SET_CODE_VALUE', payload: newValue });
-    await EditorManager.writeToTemp(newValue);
   }
 
   return <Editor

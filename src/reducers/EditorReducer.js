@@ -1,4 +1,5 @@
 import JsonStore from "../util/JsonStore";
+import EditorManager from "../util/EditorManager";
 
 const initState = {
   codeResult: '...',
@@ -16,6 +17,7 @@ export default function EditorReducer (state = initState, action) {
       return { ...state, codeResult: action.payload };
 
     case 'SET_CODE_VALUE':
+      (async () => { await EditorManager.writeToTemp(action.payload) })();
       return { ...state, codeValue: action.payload };
 
     case 'SET_MODE_LANG':

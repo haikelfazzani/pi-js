@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Select from './Select';
 
 const languages = [
@@ -9,9 +9,9 @@ const languages = [
 ];
 
 const fontSizes = ['10px', '12px', '14px', '16px', '18px', '20px', '22px', '24px'];
-const THEMES = ['monokai', 'dracula'];
+const THEMES = ['monokai', 'dracula', 'clouds_midnight', 'gob', 'kr_theme', 'terminal'];
 
-export default function Footer () {
+export default function Footer ({ children }) {
 
   const config = useSelector(state => state.EditorReducer.config);
   const dispatch = useDispatch();
@@ -30,16 +30,17 @@ export default function Footer () {
 
   return <footer className="d-flex-sp">
 
-    <div className="d-flex">
-      <p className="boder-right p-15">{config.fontSize}</p>
-      <p className="boder-right p-15">{config.theme}</p>
-      <p className="boder-right p-15">{config.mode}</p>
+    <div className="d-flex h-100">
+      <p className="boder-right p-15 h-100">{config.theme}</p>
+      <p className="boder-right p-15 h-100">{config.mode}</p>
+      <p className="boder-right p-15 h-100">{config.fontSize}</p>
+      {children}
     </div>
 
-    <div className="d-flex">
-      <Select items={languages.map(l => l.lang)} onChange={onLangChange} clx="boder-left p-15" />
-      <Select items={fontSizes} onChange={onFontChange} clx="boder-left p-15" />
-      <Select items={THEMES} onChange={onThemeChange} clx="boder-left p-15" />
+    <div className="d-flex h-100">
+      <Select items={languages.map(l => l.lang)} onChange={onLangChange} clx="p-15" />
+      <Select items={fontSizes} onChange={onFontChange} clx="p-15" />
+      <Select items={THEMES} onChange={onThemeChange} clx="p-15" />
     </div>
 
   </footer>;

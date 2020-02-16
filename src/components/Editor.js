@@ -3,8 +3,13 @@ import AceEditor from "react-ace";
 
 import "ace-builds/src-noconflict/mode-typescript";
 import "ace-builds/src-noconflict/mode-html";
+
 import "ace-builds/src-noconflict/theme-dracula";
 import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/theme-clouds_midnight";
+import "ace-builds/src-noconflict/theme-gob";
+import "ace-builds/src-noconflict/theme-kr_theme";
+import "ace-builds/src-noconflict/theme-terminal";
 
 import "ace-builds/src-min-noconflict/ext-language_tools";
 

@@ -4,10 +4,12 @@ import CodeResult from './components/CodeResult';
 import CodeEditor from './components/CodeEditor';
 import Footer from './components/Footer';
 import Snackbar from './components/SnackBar';
+import Button from './components/Button';
 
 export default function App () {
 
   const [fileIsSaved, setFileIsSaved] = useState(false);
+  const [formatCode, setFormatCode] = useState(false);
 
   useEffect(() => {
     window.ipcRenderer.on('save-file', (channel, isSaved) => {
@@ -19,11 +21,17 @@ export default function App () {
   return <>
     <div className="container">
       <Split sizes={[60, 40.5]}>
-        <CodeEditor />
+        <CodeEditor formatCode={formatCode} />
         <CodeResult />
       </Split>
     </div>
-    <Footer />
+    <Footer>
+      <Button
+        onClick={() => { setFormatCode(!formatCode) }}
+        text="Format Code"
+        clx="btn-format boder-right p-15 h-100"
+      />
+    </Footer>
     <Snackbar msg="File has been saved!" show={fileIsSaved} />
   </>
 }

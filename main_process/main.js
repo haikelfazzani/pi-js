@@ -23,15 +23,15 @@ function createWindow () {
 app.on('browser-window-created', function (event, win) {
   win.webContents.on('context-menu', (err, params) => {
     contextMenu.popup(win, params.x, params.y);
-  })
-})
+  });
+});
 
 app.on('ready', createWindow);
 
 app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit()
-})
+  if (process.platform !== 'darwin') app.quit();
+});
 
 app.on('activate', function () {
-  if (mainWindow === null) createWindow()
-})
+  if (mainWindow === null) createWindow();
+});

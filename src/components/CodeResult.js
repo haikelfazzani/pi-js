@@ -5,14 +5,19 @@ import EditorManager from '../util/EditorManager';
 
 export default function CodeResult () {
 
-  const config = useSelector(state => state.EditorReducer.config);
-  const codeResult = useSelector(state => state.EditorReducer.codeResult);
+  const editorReducer = useSelector(state => state.EditorReducer);
+  const { codeResult, config } = editorReducer;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    window.ipcRenderer.on('run-code', async (channel, currPath) => {
-      let data = await EditorManager.runCode(currPath);
-      dispatch({ type: 'RUN_CODE', payload: data });
+    window.ipcRenderer.on('run-code', (channel, currPath) => {
+      EditorManager.runCode(currPath)
+        .then(result => {
+          dispatch({ type: 'RUN_CODE', payload: result });
+        })
+        .catch(e => {
+          dispatch({ type: 'RUN_CODE', payload: e });
+        });
     });
   }, []);
 
