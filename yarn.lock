@@ -1157,6 +1157,11 @@ author-regex@^1.0.0:
   resolved "https://registry.yarnpkg.com/author-regex/-/author-regex-1.0.0.tgz#d08885be6b9bbf9439fe087c76287245f0a81450"
   integrity sha1-0IiFvmubv5Q5/gh8dihyRfCoFFA=
 
+ayu-ace@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/ayu-ace/-/ayu-ace-2.0.4.tgz#3877d4cbf8668e639de6f67e34c2a88c1589b082"
+  integrity sha512-g5zpO8RisWHF2CsZwaTuIbPA+7HPFEH0tU0IDr+HEboqpex9kfwm6z3ReUDDK4/LJq65uZf38J657oJrxg43Bg==
+
 babel-loader@^8.0.6:
   version "8.0.6"
   resolved "https://registry.yarnpkg.com/babel-loader/-/babel-loader-8.0.6.tgz#e33bdb6f362b03f4bb141a0c21ab87c501b70dfb"

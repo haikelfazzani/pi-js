@@ -48,8 +48,7 @@
     "code",
     "editor",
     "javascript",
-    "typescript",
-    "python"
+    "typescript"
   ],
   "bugs": {
     "url": "https://github.com/haikelfazzani/picode/issues"
@@ -70,7 +69,6 @@
     "electron-reloader": "^0.3.0",
     "electron-winstaller": "^4.0.0",
     "js-beautify": "^1.10.3",
-    "marked": "^0.8.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-ace": "^8.0.0",

@@ -6,10 +6,11 @@ import "ace-builds/src-noconflict/mode-html";
 
 import "ace-builds/src-noconflict/theme-dracula";
 import "ace-builds/src-noconflict/theme-monokai";
-import "ace-builds/src-noconflict/theme-clouds_midnight";
-import "ace-builds/src-noconflict/theme-gob";
-import "ace-builds/src-noconflict/theme-kr_theme";
-import "ace-builds/src-noconflict/theme-terminal";
+import "ace-builds/src-noconflict/theme-material";
+
+import "ace-builds/src-noconflict/theme-ayu_dark";
+import "ace-builds/src-noconflict/theme-ayu_light";
+import "ace-builds/src-noconflict/theme-ayu_mirage";
 
 import "ace-builds/src-min-noconflict/ext-language_tools";
 

@@ -9,7 +9,7 @@ const languages = [
 ];
 
 const fontSizes = ['10px', '12px', '14px', '16px', '18px', '20px', '22px', '24px'];
-const THEMES = ['monokai', 'dracula', 'clouds_midnight', 'gob', 'kr_theme', 'terminal'];
+const THEMES = ['monokai', 'dracula', 'ayu_mirage', 'ayu_dark', 'ayu_light', 'material'];
 
 export default function Footer ({ children }) {
 
