@@ -1,6 +1,6 @@
 import JsonStore from './JsonStore';
 
-var TEMP_FILE_PATH = __dirname + '/temp';
+var TEMP_FILE_PATH = __dirname + '/temp.js';
 
 export default class EditorManager {
 
@@ -28,10 +28,33 @@ export default class EditorManager {
 
   static async runCode (currPath) {
     return new Promise((resolve, reject) => {
-      window.execFile('node', [currPath], { encoding: 'utf8' }, (error, stdout, stderr) => {
-        if (stderr || error) reject(stderr || error.message);
-        else resolve(stdout);
-      });
-    })
+
+      var extension = window.path.extname(currPath); // .ts
+
+      switch (extension) {
+        case '.ts':
+          window.exec('ts-node ' + currPath, { encoding: 'utf8' }, (error, stdout, stderr) => {
+            if (stderr) reject(stderr);
+            else resolve(stdout);
+          });
+          break;
+
+        case '.py':
+          window.execFile('python', [currPath], { encoding: 'utf8' }, (error, stdout, stderr) => {
+            if (stderr) reject(stderr);
+            else resolve(stdout);
+          });
+          break;
+
+        default:
+          window.execFile('node', [currPath], { encoding: 'utf8' }, (error, stdout, stderr) => {
+            if (stderr) reject(stderr);
+            else resolve(stdout);
+          });
+          break;
+      }
+
+
+    });
   }
 }

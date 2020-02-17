@@ -27,6 +27,7 @@ export default function CodeResult () {
     value={codeResult}
     onChange={onEditor}
     aceId="ace-editor-result"
+    highlightActiveLine={false}
     config={{ fontSize: config.fontSize, theme: config.theme }}
   />;
 }

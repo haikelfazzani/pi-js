@@ -1,5 +1,4 @@
-var fs = require('fs');
-const STORE_PATH = __dirname + '/store.json';
+var STORE_PATH = __dirname + '/store.json';
 
 export default class JsonStore {
 
@@ -19,11 +18,7 @@ export default class JsonStore {
   static pushOrUpdate (field, value) {
     this.store = this.get() || {};
     this.store[field] = value;
-    this.saveStore();
+    window.fsPromises.writeFile(STORE_PATH, JSON.stringify(this.store), (err) => { });
     return this.get();
-  }
-
-  static saveStore () {
-    fs.writeFileSync(STORE_PATH, JSON.stringify(this.store));
   }
 }

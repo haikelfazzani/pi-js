@@ -42,14 +42,7 @@ body,
 
 #ace-editor, #ace-editor-result,#ace-editor-col .ace_editor {height: 100% !important;}
 
-.code-result {
-  height: 100%;
-  color: #f1d817;
-  word-break: break-all;
-  overflow: auto;
-  transition: width .2s;
-}
-
+/* */
 #ace-editor .ace_editor,
 #ace-editor .ace_content {
   width: 100% !important;

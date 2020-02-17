@@ -2,7 +2,7 @@ import JsonStore from './JsonStore';
 const { dialog } = require("electron");
 const fsPromises = require('fs').promises;
 
-const TEMP_FILE_PATH = __dirname + '/temp';
+const TEMP_FILE_PATH = __dirname + '/temp.js';
 
 export default class FileManager {
 

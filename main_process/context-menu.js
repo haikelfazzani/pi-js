@@ -13,14 +13,6 @@ const items = [
   },
   { type: 'separator' },
   {
-    label: 'New File',
-    accelerator: 'CmdOrCtrl+n',
-    click: (menuItem, browserWindow, event) => {
-      browserWindow.webContents.send('new-file', 'new-file');
-    }
-  },
-  { type: 'separator' },
-  {
     label: 'Open File',
     accelerator: 'CmdOrCtrl+l',
     click: async (menuItem, browserWindow, event) => {

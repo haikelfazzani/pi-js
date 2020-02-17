@@ -1,5 +1,5 @@
 {
-  "name": "picode",
+  "name": "pijs",
   "version": "1.0.0",
   "author": "Haikel Fazzani",
   "license": "MIT",
@@ -42,18 +42,20 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/haikelfazzani/picode.git"
+    "url": "git+https://github.com/haikelfazzani/pi-js.git"
   },
   "keywords": [
     "code",
     "editor",
+    "playground",
     "javascript",
-    "typescript"
+    "typescript",
+    "python"
   ],
   "bugs": {
-    "url": "https://github.com/haikelfazzani/picode/issues"
+    "url": "https://github.com/haikelfazzani/pi-js/issues"
   },
-  "homepage": "https://github.com/haikelfazzani/picode#readme",
+  "homepage": "https://github.com/haikelfazzani/pi-js#readme",
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/polyfill": "^7.8.3",
