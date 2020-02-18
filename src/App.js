@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Split from 'react-split';
-import CodeResult from './components/CodeResult';
-import CodeEditor from './components/CodeEditor';
+import CodeResult from './containers/CodeResult';
+import CodeEditor from './containers/CodeEditor';
 import Footer from './components/Footer';
 import Snackbar from './components/SnackBar';
 import Button from './components/Button';

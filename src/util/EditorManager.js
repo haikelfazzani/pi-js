@@ -46,15 +46,17 @@ export default class EditorManager {
           });
           break;
 
-        default:
+        case '.js':
           window.execFile('node', [currPath], { encoding: 'utf8' }, (error, stdout, stderr) => {
             if (stderr) reject(stderr);
             else resolve(stdout);
           });
           break;
+
+        default:
+          resolve('');
+          break;
       }
-
-
     });
   }
 }

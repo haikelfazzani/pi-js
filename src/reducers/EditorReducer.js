@@ -2,7 +2,7 @@ import JsonStore from "../util/JsonStore";
 import EditorManager from "../util/EditorManager";
 
 const initState = {
-  codeResult: '...',
+  codeResult: '',
   codeValue: '',
   config: {
     fontSize: JsonStore.getPropVal('font-size'),

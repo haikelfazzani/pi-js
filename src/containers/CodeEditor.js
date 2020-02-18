@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Editor from './Editor';
+import Editor from '../components/Editor';
 import EditorManager from '../util/EditorManager';
 import js_beautify from 'js-beautify';
 
@@ -36,6 +36,6 @@ export default function CodeEditor ({ formatCode }) {
   return <Editor
     value={state}
     onChange={onCodeChange}
-    config={{ fontSize: config.fontSize, theme: config.theme }}
+    config={{ fontSize: config.fontSize, theme: config.theme, mode: config.mode }}
   />;
 }

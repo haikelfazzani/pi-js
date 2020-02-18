@@ -38,7 +38,7 @@ const config = {
         { src: 'render_process/*', dest: 'dist/' }
       ]
     }),
-    terser()
+    //terser()
   ]
 }
 

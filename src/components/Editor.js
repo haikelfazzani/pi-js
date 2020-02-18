@@ -3,6 +3,7 @@ import AceEditor from "react-ace";
 
 import "ace-builds/src-noconflict/mode-typescript";
 import "ace-builds/src-noconflict/mode-python";
+import "ace-builds/src-noconflict/mode-html";
 
 import "ace-builds/src-noconflict/theme-dracula";
 import "ace-builds/src-noconflict/theme-monokai";
@@ -19,7 +20,7 @@ import "ace-builds/src-min-noconflict/ext-language_tools";
 export default function Editor ({ value, onChange, aceId, config, highlightActiveLine = true }) {
 
   return <AceEditor
-    mode="typescript"
+    mode={config.mode}
     theme={config.theme}
     onChange={onChange}
     value={value}
