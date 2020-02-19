@@ -25,7 +25,7 @@ const config = {
       ],
       namedExports: {
         'node_modules/react/index.js': [
-          'PropTypes', 'useState', 'useEffect', 'useCallback',
+          'Component','PropTypes', 'useState', 'useEffect', 'useCallback',
           'useContext', 'useMemo', 'useRef', 'useReducer',
           'useLayoutEffect', 'memo'
         ],

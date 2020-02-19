@@ -13,6 +13,16 @@ export default class FileManager {
       : TEMP_FILE_PATH;
   }
 
+  static async openFolder () {
+    let currFolder = '';
+    let result = await dialog.showOpenDialog({ properties: ['openDirectory'] });
+    if (!result.canceled) {
+      currFolder = result.filePaths[0];
+      JsonStore.pushOrUpdate('directory-path', currFolder);
+    }
+    return currFolder;
+  }
+
   static async openFile () {
     let result = await dialog.showOpenDialog();
     let data = '';

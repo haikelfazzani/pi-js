@@ -13,6 +13,15 @@ const items = [
   },
   { type: 'separator' },
   {
+    label: 'Open Folder',
+    accelerator: 'CmdOrCtrl+o',
+    click: async (menuItem, browserWindow, event) => {
+      let currDirPath = await FileManager.openFolder();
+      browserWindow.webContents.send('open-folder', currDirPath);
+    }
+  },
+  { type: 'separator' },
+  {
     label: 'Open File',
     accelerator: 'CmdOrCtrl+l',
     click: async (menuItem, browserWindow, event) => {

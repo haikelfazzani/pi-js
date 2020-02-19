@@ -4,6 +4,7 @@ import EditorManager from "../util/EditorManager";
 const initState = {
   codeResult: '',
   codeValue: '',
+  currentFilePath: '',
   config: {
     fontSize: JsonStore.getPropVal('font-size'),
     theme: JsonStore.getPropVal('theme'),
@@ -31,6 +32,11 @@ export default function EditorReducer (state = initState, action) {
     case 'SET_THEME':
       JsonStore.pushOrUpdate('theme', action.payload);
       return { ...state, config: { ...state.config, theme: action.payload } };
+
+    // update store json file
+    case 'SET_CURRENT_FILE_PATH':
+      JsonStore.pushOrUpdate('current-path', action.payload);
+      return { ...state, currentFilePath: action.payload };
 
     default:
       return state;

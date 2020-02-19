@@ -1,6 +1,7 @@
 function Example() {
   const [count, setCount] = React.useState(0);
 
+
   return (
     <div>
       <p>You clicked {count} times</p>
@@ -10,5 +11,6 @@ function Example() {
     </div>
   );
 }
+
 
 ReactDOM.render(<Example />, document.getElementById('react-root'));

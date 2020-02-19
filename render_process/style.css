@@ -52,6 +52,23 @@ body,
 iframe {border: 0;height: 100%;}
 p { margin: 0; padding: 0;}
 
+/* Side files */
+.side-files{ 
+  overflow-y: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  z-index: 999;
+  background-color: #1d2022;
+transition: all .3s;}
+
+  .file-tree{ width: 95%; height: 100%; padding: 15px 1px 20px; }
+  .side-files .toggle-sidefiles {width: 5%; height: 100%; background-color: #006192; cursor: pointer;}
+
+.side-files ul { width: 100%; list-style: none;margin: 0;  padding: 5px; }
+.side-files ul li { padding: 5px 2px; word-wrap: break-word;}
 /**/
 footer {
   background-color: #006192;

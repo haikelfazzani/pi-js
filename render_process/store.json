@@ -3,6 +3,8 @@
   "filename": "",
   "file-extension": "",
   "font-size": "16px",
-  "mode-lang": "html",
-  "theme": "monokai"
+  "mode-lang": "typescript",
+  "theme": "monokai",
+  "directory-path":"",
+  "files":[]
 }

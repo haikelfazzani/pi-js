@@ -4,8 +4,7 @@ import Select from './Select';
 
 const languages = [
   { lang: 'javascript', ext: '.js' },
-  { lang: 'typescript', ext: '.ts' },
-  { lang: 'html', ext: '.html' }
+  { lang: 'typescript', ext: '.ts' }
 ];
 
 const fontSizes = ['10px', '12px', '14px', '16px', '18px', '20px', '22px', '24px'];
@@ -32,8 +31,8 @@ export default function Footer ({ children }) {
   return <footer className="d-flex-sp">
 
     <div className="d-flex h-100">
-      <p className="boder-right p-15 h-100">{config.theme}</p>
-      <p className="boder-right p-15 h-100">{config.mode}</p>
+    <p className="boder-right p-15 h-100">{config.mode}</p>
+      <p className="boder-right p-15 h-100">{config.theme}</p>      
       <p className="boder-right p-15 h-100">{config.fontSize}</p>
       {children}
     </div>

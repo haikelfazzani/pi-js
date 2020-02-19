@@ -5,6 +5,7 @@ import CodeEditor from './containers/CodeEditor';
 import Footer from './components/Footer';
 import Snackbar from './components/SnackBar';
 import Button from './components/Button';
+import DirTree from './components/tree/DirTree';
 
 export default function App () {
 
@@ -19,6 +20,7 @@ export default function App () {
   }, []);
 
   return <>
+    <DirTree />
     <div className="container">
       <Split sizes={[60, 40.5]}>
         <CodeEditor formatCode={formatCode} />
