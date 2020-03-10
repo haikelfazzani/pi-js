@@ -48,6 +48,14 @@ const items = [
     }
   },
   { type: 'separator' },
+  {
+    label: 'Format Code',
+    accelerator: 'CmdOrCtrl+Shift+f',
+    click: async (menuItem, browserWindow, event) => {
+      browserWindow.webContents.send('format-code', 'format-code');
+    }
+  },
+  { type: 'separator' },
   { role: 'cut' },
   { role: 'copy' },
   { role: 'paste' },

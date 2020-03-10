@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import GlobalContext from '../providers/GlobalContext';
 import AceEditor from "react-ace";
 
 import "ace-builds/src-noconflict/mode-typescript";
@@ -7,10 +8,9 @@ import "ace-builds/src-noconflict/mode-golang";
 
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/theme-material";
-import "ace-builds/src-noconflict/theme-vs_dark";
+import "ace-builds/src-noconflict/theme-dracula";
 
 import "ace-builds/src-noconflict/ext-language_tools";
-import GlobalContext from '../providers/GlobalContext';
 
 export default function Editor ({ value, id = 'my-ace-editor', onChange, showLineNumbers = true }) {
 

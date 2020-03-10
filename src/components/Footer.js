@@ -4,7 +4,7 @@ import GlobalContext from '../providers/GlobalContext';
 import Snackbar from './Snackbar';
 
 const fontSizes = ['10', '12', '14', '16', '18', '20', '22', '24'];
-const themes = ['monokai', 'material', 'vs_dark'];
+const themes = ['monokai', 'material', 'dracula'];
 
 export default function Footer () {
 
