@@ -34,7 +34,7 @@ body {
 }
 
 .gutter {
-  border-right: 1px solid #707070;  
+  border-right: 1px solid #707070;
   cursor: col-resize;
 }
 
@@ -42,8 +42,86 @@ body {
 #ace-editor,
 #my-ace-editor {
   height: 100% !important;
-  background-color: #252525 !important;
+  background-color: #252525;
   overflow-x: hidden !important;
 }
 
-.ace_gutter {background-color: #252525 !important;}
+.ace_gutter {
+  background-color: #252525 !important;
+}
+
+/* snackbar */
+.snackbar {
+  visibility: hidden;
+  margin-left: -125px;
+  font-size: 14px !important;
+  background-color: #006192;
+  color: #fff;
+  padding: 5px 15px;
+  z-index: 999;
+
+  .snackbar-content {
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .sn-btn-close {
+      color: #dbdbdb;
+      cursor: pointer;
+      &:hover {color: #ffffff !important;}
+    }
+  }
+}
+
+.snack-right {
+  position: fixed;
+  right: 5%;
+  bottom: 30px;
+}
+
+.snack-center {
+  position: fixed;
+  left: 50%;
+  bottom: 30px;
+}
+
+.snackbar.show {
+  visibility: visible;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 40px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 40px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #363636;
+}

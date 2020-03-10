@@ -41,9 +41,9 @@ export default class FileManager {
    * default temp file
    * @param {string} filePath 
    */
-  static async writeFile (filePath = TEMP_FILE_PATH) {
+  static async writeFile (data, filePath = TEMP_FILE_PATH) {
     try {
-      data = await window.fsPromises.writeFile(filePath, data, { encoding: 'utf8' });
+      await window.fsPromises.writeFile(filePath, data, { encoding: 'utf8' });
     } catch (error) {
       this.fileErros = error.message;
     }

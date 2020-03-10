@@ -8,14 +8,14 @@ export default function CodeEditor () {
 
   useEffect(() => {
     window.ipcRenderer.on('open-file', async (channel, fileContent) => {
-      if (fileContent && fileContent.length > 5) {
+      if (fileContent) {
         setEditorValue(fileContent);
       }
     });
   }, []);
 
   const onEditorChange = async (data) => {
-    await FileManager.writeFile(window.dirName + '/temp.js', data);
+    await FileManager.writeFile(data);
   }
 
   return <Editor onChange={onEditorChange} value={editorValue} />;

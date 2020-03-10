@@ -16,7 +16,7 @@ const items = [
     accelerator: 'CmdOrCtrl+l',
     click: async (menuItem, browserWindow, event) => {
       try {
-        let result = await dialog.showOpenDialog();        
+        let result = await dialog.showOpenDialog();
         if (!result.canceled) {
           let fileContent = await FileManager.openFile(result.filePaths[0]);
           browserWindow.webContents.send('open-file', fileContent);
@@ -30,13 +30,21 @@ const items = [
     label: 'Save',
     accelerator: 'CmdOrCtrl+s',
     click: async (menuItem, browserWindow, event) => {
-      browserWindow.webContents.send('save-file', isSaved);
+      try {
+        let isSaved = await FileManager.saveFile();
+        browserWindow.webContents.send('save-file', isSaved);
+      } catch (error) {
+        await dialog.showMessageBox({ type: 'error', message: error.message });
+      }
     }
   },
   {
     label: 'Save As..',
     accelerator: 'CmdOrCtrl+Shift+s',
     click: async (menuItem, browserWindow, event) => {
+      let result = await dialog.showSaveDialog();
+      let isSaved = await FileManager.saveAsFile(result.filePath);
+      browserWindow.webContents.send('save-as-file', isSaved);
     }
   },
   { type: 'separator' },

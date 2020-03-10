@@ -4,5 +4,27 @@ footer {
   background-color: #2255ff;
   font-size: 12px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+
+  select {
+    background-color: #2255ff;
+    color: #ffffff;
+    border: 0;
+    padding: 0 15px;
+    border-left: 2px solid #6e63ff;
+    outline: none;
+  }
+
+  .boxes {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      border-right: 2px solid #6e63ff;
+      padding: 0 15px;
+    }
+  }
 }

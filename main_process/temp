@@ -1,28 +1,26 @@
-package main
+function editDistance(word1, word2) {
+  const len = word1.length;
+  const len2 = word2.length;
+  let dp = [];
 
-import "fmt"
-
-func main() {
-
-    i := 1
-    for i <= 3 {
-        fmt.Println(i)
-        i = i + 1
+  for (let i = 0; i < len + 1; i++) {
+    dp[i] = [];
+    for (let j = 0; j < len2 + 1; j++) {
+      /* base case: empty strings */
+      if (i === 0) dp[i][j] = j;
+      else if (j === 0) dp[i][j] = i;
+      /* test if last characters of the strings match */
+      else if (
+        word1[i - 1] === word2[j - 1]
+      ) {
+        dp[i][j] = dp[i - 1][j - 1];
+      } else {
+        dp[i][j] = 1 + Math.min(dp[i][j - 1], dp[i - 1][j], dp[i - 1][j - 1]);
+      }
     }
-
-    for j := 7; j <= 9; j++ {
-        fmt.Println(j)
-    }
-
-    for {
-        fmt.Println("loop")
-        break
-    }
-
-    for n := 0; n <= 5; n++ {
-        if n%2 == 0 {
-            continue
-        }
-        fmt.Println(n)
-    }
+  }
+  return dp[len][len2];
 }
+
+console.log("Result = ", editDistance("hello", "hello"));
+console.log("Result = ", editDistance("hello", "sssss")); // 4

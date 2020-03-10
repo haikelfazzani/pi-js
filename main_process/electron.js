@@ -1,10 +1,10 @@
 const electron = require('electron');
 const { app, BrowserWindow, Menu } = electron;
 const ctxMenu = require('./context-menu');
-const path = require('path');
+const menuTemplate = require('./menu')
 
 let mainWindow;
-let isProd = false;
+let isProd = true;
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -18,6 +18,8 @@ function createWindow () {
   isProd
     ? mainWindow.loadFile(__dirname + '/index.html')
     : mainWindow.loadURL('http://localhost:8080');
+
+    Menu.setApplicationMenu(menuTemplate);
 
   mainWindow.on('closed', function () {
     mainWindow = null

@@ -1,16 +1,17 @@
 {
-  "name": "react-electron-webpack",
+  "name": "pijs",
   "version": "1.0.0",
-  "description": "",
+  "description": "Javascript playground",
+  "icon": "icons/logo48.png",
   "main": "main_process/electron.js",
   "scripts": {
     "start": "webpack-dev-server  --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "el": "electron ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["playground", "code", "editor"],
+  "author": "Haikel Fazzani",
+  "license": "MIT",
   "dependencies": {
   },
   "devDependencies": {
@@ -39,5 +40,34 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
     "webpack-merge": "^4.2.2"
+  },
+  "build": {
+    "asar": false,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "installerIcon": "icons/logo.ico",
+      "uninstallerIcon": "icons/logo.ico",
+      "license": "License.md"
+    },
+    "directories": {
+      "buildResources": "dist",
+      "output": "build"
+    },
+    "files": [
+      "dist/electron.js",
+      "dist/*",
+      "dist/*/**",
+      "!**/node_modules/*",
+      "!icons/*"
+    ]
   }
 }

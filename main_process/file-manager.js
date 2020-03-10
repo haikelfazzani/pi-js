@@ -2,6 +2,7 @@ const path = require('path');
 const fsPromises = require('fs').promises;
 const TEMP_FILE_PATH = path.join(__dirname, 'temp');
 const STORE_PATH = path.join(__dirname, 'config.json');
+const JsonStore = require('./json-store');
 
 module.exports = class FileManager {
 
@@ -28,6 +29,38 @@ module.exports = class FileManager {
       this.fileErros = error.message;
     }
     return fileContent;
+  }
+
+  static async saveFile () {
+    try {
+      let currfilepath = JsonStore.getPropVal('currfilepath');
+      let fileContent = await fsPromises.readFile(TEMP_FILE_PATH, { encoding: 'utf8' });
+      await fsPromises.writeFile(currfilepath, fileContent, { encoding: 'utf8' });
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  static async saveAsFile (filePathSave) {
+    try {
+      let fileContent = await fsPromises.readFile(TEMP_FILE_PATH, { encoding: 'utf8' });
+      await fsPromises.writeFile(filePathSave, fileContent, { encoding: 'utf8', flag: 'w' });
+
+      let fileName = path.basename(filePathSave);
+      let fileExt = path.extname(fileName);
+
+      await this.updateConfigFile({
+        'currfilepath': filePathSave,
+        'filename': fileName,
+        'fileExtension': fileExt,
+        'language': this.getLanguage(fileExt)
+      });
+
+      return true;
+    } catch (error) {
+      return false;
+    }
   }
 
   static async updateConfigFile (configs) {
