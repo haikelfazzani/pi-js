@@ -1,13 +1,4 @@
-.vscode
-.idea
-storybook-static
 node_modules
-coverage
 
-picode-win32-x64
-
-Squirrel.exe
-
-app/
 dist/
 build/

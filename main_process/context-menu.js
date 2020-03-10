@@ -1,23 +1,13 @@
-const { Menu, MenuItem } = require("electron");
+const { Menu, MenuItem, dialog } = require("electron");
 const ctxMenu = new Menu();
-
-import FileManager from './FileManager';
+const FileManager = require('./file-manager');
 
 const items = [
   {
     label: 'Run Code',
     accelerator: 'CmdOrCtrl+Enter',
     click: (menuItem, browserWindow, event) => {
-      browserWindow.webContents.send('run-code', FileManager.getCurrPathFile());
-    }
-  },
-  { type: 'separator' },
-  {
-    label: 'Open Folder',
-    accelerator: 'CmdOrCtrl+o',
-    click: async (menuItem, browserWindow, event) => {
-      let currDirPath = await FileManager.openFolder();
-      browserWindow.webContents.send('open-folder', currDirPath);
+      browserWindow.webContents.send('run-code', 'run-code');
     }
   },
   { type: 'separator' },
@@ -25,15 +15,21 @@ const items = [
     label: 'Open File',
     accelerator: 'CmdOrCtrl+l',
     click: async (menuItem, browserWindow, event) => {
-      let data = await FileManager.openFile();
-      browserWindow.webContents.send('set-content-file', data);
+      try {
+        let result = await dialog.showOpenDialog();        
+        if (!result.canceled) {
+          let fileContent = await FileManager.openFile(result.filePaths[0]);
+          browserWindow.webContents.send('open-file', fileContent);
+        }
+      } catch (error) {
+        await dialog.showMessageBox({ type: 'error', message: error.message });
+      }
     }
   },
   {
     label: 'Save',
     accelerator: 'CmdOrCtrl+s',
     click: async (menuItem, browserWindow, event) => {
-      let isSaved = await FileManager.saveFile();
       browserWindow.webContents.send('save-file', isSaved);
     }
   },
@@ -41,8 +37,6 @@ const items = [
     label: 'Save As..',
     accelerator: 'CmdOrCtrl+Shift+s',
     click: async (menuItem, browserWindow, event) => {
-      let isSaved = await FileManager.saveAsFile();
-      browserWindow.webContents.send('save-as-file', isSaved);
     }
   },
   { type: 'separator' },
@@ -62,4 +56,4 @@ items.forEach(m => {
   ctxMenu.append(new MenuItem(m))
 });
 
-export default ctxMenu;
+module.exports = ctxMenu;

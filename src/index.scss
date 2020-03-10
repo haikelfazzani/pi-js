@@ -1,0 +1,49 @@
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #ffffff;
+  text-align: left;
+  background-color: #212529;
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+#root>div {
+  display: flex;
+  width: 100%;
+  height: 97%;
+}
+
+.gutter {
+  border-right: 1px solid #707070;  
+  cursor: col-resize;
+}
+
+
+#ace-editor,
+#my-ace-editor {
+  height: 100% !important;
+  background-color: #252525 !important;
+  overflow-x: hidden !important;
+}
+
+.ace_gutter {background-color: #252525 !important;}

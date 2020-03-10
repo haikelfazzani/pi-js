@@ -1,13 +1,16 @@
-var STORE_PATH = __dirname + '/store.json';
+var STORE_PATH = window.path.join(window.dirName, 'config.json');
 
 export default class JsonStore {
 
   constructor () {
-    this.store = require(STORE_PATH);
+    this.storeContent = window.fs.readFileSync(STORE_PATH, 'utf8');
+    this.store = JSON.parse(this.storeContent);
   }
 
   static get () {
-    return require(STORE_PATH);
+    this.storeContent = window.fs.readFileSync(STORE_PATH, 'utf8');
+    this.store = JSON.parse(this.storeContent);
+    return this.store;
   }
 
   static getPropVal (prop) {
@@ -15,10 +18,23 @@ export default class JsonStore {
     return this.store[prop];
   }
 
-  static pushOrUpdate (field, value) {
-    this.store = this.get() || {};
-    this.store[field] = value;
-    window.fsPromises.writeFile(STORE_PATH, JSON.stringify(this.store), (err) => { });
-    return this.get();
+  static async pushOrUpdate (field, value) {
+    try {
+      this.store = this.get() || {};
+      this.store[field] = value;
+      await window.fsPromises.writeFile(STORE_PATH, JSON.stringify(this.store), { encoding: 'utf8' });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  static async updateConfigFile (configs) {
+    this.store = this.get();
+
+    Object.keys(configs).forEach(keys => {
+      this.store[keys] = configs[keys];
+    });
+
+    await window.fsPromises.writeFile(STORE_PATH, JSON.stringify(this.store), { encoding: 'utf8' });
   }
 }

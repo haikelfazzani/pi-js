@@ -1,41 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import Editor from '../components/Editor';
-import EditorManager from '../util/EditorManager';
-import js_beautify from 'js-beautify';
+import FileManager from '../util/FileManager';
 
-export default function CodeEditor ({ formatCode }) {
+export default function CodeEditor () {
 
-  const config = useSelector(state => state.EditorReducer.config);
-  const [state, setState] = useState('');
-  const dispatch = useDispatch();
+  const [editorValue, setEditorValue] = useState(FileManager.loadFileSync());
 
   useEffect(() => {
-    (async () => {
-      let data = await EditorManager.loadFile();
-      setState(data);
-    })();
-  }, []);
-
-  useEffect(() => {
-    window.ipcRenderer.on('set-content-file', async (channel, data) => {
-      setState(data);
-      dispatch({ type: 'SET_CODE_VALUE', payload: data });
+    window.ipcRenderer.on('open-file', async (channel, fileContent) => {
+      if (fileContent && fileContent.length > 5) {
+        setEditorValue(fileContent);
+      }
     });
   }, []);
 
-  useEffect(() => {
-    setState(js_beautify.js(state, { indent_size: 2, space_in_empty_paren: true }));
-  }, [formatCode]);
-
-  const onCodeChange = (newValue) => {
-    setState(newValue);
-    dispatch({ type: 'SET_CODE_VALUE', payload: newValue });
+  const onEditorChange = async (data) => {
+    await FileManager.writeFile(window.dirName + '/temp.js', data);
   }
 
-  return <Editor
-    value={state}
-    onChange={onCodeChange}
-    config={{ fontSize: config.fontSize, theme: config.theme, mode: config.mode }}
-  />;
+  return <Editor onChange={onEditorChange} value={editorValue} />;
 }

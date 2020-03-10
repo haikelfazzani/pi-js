@@ -1,11 +1,7 @@
-var fs = require('fs');
-var STORE_PATH = __dirname + '/store.json';
+const path = require('path');
+const STORE_PATH = path.join(__dirname, 'config.json');
 
-export default class JsonStore {
-
-  constructor () {
-    this.store = require(STORE_PATH);
-  }
+module.exports = class JsonStore {
 
   static get () {
     return require(STORE_PATH);
@@ -16,10 +12,13 @@ export default class JsonStore {
     return this.store[prop];
   }
 
-  static pushOrUpdate (field, value) {
-    this.store = this.get() || {};
-    this.store[field] = value;
-    fs.writeFile(STORE_PATH, JSON.stringify(this.store), (err) => { });
-    return this.get();
+  static async pushOrUpdate (field, value) {
+    try {
+      this.store = this.get() || {};
+      this.store[field] = value;
+      await fsPromises.writeFile(STORE_PATH, JSON.stringify(this.store), { encoding: 'utf8' });
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
