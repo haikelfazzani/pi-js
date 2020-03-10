@@ -1,6 +1,7 @@
 import JsonStore from "./JsonStore";
 
 let execFile = window.childProcess.execFile;
+let exec = window.childProcess.exec;
 
 export default async function ExecCode () {
 
