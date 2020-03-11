@@ -11,6 +11,14 @@ const Action = {
       click: (menuItem, browserWindow, event) => {
         browserWindow.webContents.send('run-code', 'run code')
       }
+    },
+    { type: 'separator' },
+    {
+      label: 'Format Code',
+      accelerator: 'CmdOrCtrl+Shift+f',
+      click: async (menuItem, browserWindow, event) => {
+        browserWindow.webContents.send('format-code', 'format-code');
+      }
     }
   ]
 };
@@ -38,7 +46,7 @@ const FileHandler = {
       accelerator: 'CmdOrCtrl+s',
       click: async (menuItem, browserWindow, event) => {
         try {
-          let isSaved  = await FileManager.saveFile();
+          let isSaved = await FileManager.saveFile();
           browserWindow.webContents.send('save-file', isSaved);
         } catch (error) {
           await dialog.showMessageBox({ type: 'error', message: error.message });

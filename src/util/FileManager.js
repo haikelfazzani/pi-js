@@ -1,3 +1,5 @@
+import js_beautify from 'js-beautify/js';
+import JsonStore from './JsonStore';
 const TEMP_FILE_PATH = window.path.join(window.dirName, 'temp');
 
 export default class FileManager {
@@ -63,5 +65,14 @@ export default class FileManager {
       this.fileErros = error.message;
     }
     return data;
+  }
+
+  static async formatCode () {
+    let tempFileContent = await this.loadFile();
+    let lang = await JsonStore.getPropVal('language');
+    
+    return (lang !== 'python' || lang !== 'golang')
+      ? js_beautify.js(tempFileContent, { indent_size: 2, space_in_empty_paren: true })
+      : tempFileContent;
   }
 }

@@ -9,8 +9,21 @@ export default class JsonStore {
 
   static get () {
     this.storeContent = window.fs.readFileSync(STORE_PATH, 'utf8');
-    this.store = JSON.parse(this.storeContent);
-    return this.store;
+    try {
+      this.store = JSON.parse(this.storeContent);
+      return this.store;
+    } catch (error) {
+      return {
+        "usercode": "",
+        "language": "javascript",
+        "filename": "",
+        "fileExtension": ".js",
+        "currfilepath": "",
+        "fontsize": "16",
+        "theme": "monokai",
+        "issaved": false
+      };
+    }
   }
 
   static getPropVal (prop) {

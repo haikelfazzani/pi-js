@@ -9,8 +9,12 @@ export default function ResultPane () {
 
   useEffect(() => {
     window.ipcRenderer.on('run-code', async (channel, data) => {      
-      let result = await ExecCode();
-      setCodeOutput(result);
+      try {
+        let result = await ExecCode();
+        setCodeOutput(result);
+      } catch (error) {
+        setCodeOutput(error);
+      }      
     });
   }, []);
 

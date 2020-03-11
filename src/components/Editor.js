@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import GlobalContext from '../providers/GlobalContext';
 import AceEditor from "react-ace";
 
@@ -12,12 +12,19 @@ import "ace-builds/src-noconflict/theme-dracula";
 
 import "ace-builds/src-noconflict/ext-language_tools";
 
-export default function Editor ({ value, id = 'my-ace-editor', onChange, showLineNumbers = true }) {
+export default function Editor ({ value, id = 'my-ace-editor', onChange, lang = 'typescript', showLineNumbers = true }) {
 
   const { globalState } = useContext(GlobalContext);
+  const aceEditor = useRef();
 
+  useEffect(() => {
+    let editor = aceEditor.current.editor;
+    editor.commands.bindKeys({ "ctrl-l": null, "left": null });
+  }, []);
+  
   return <AceEditor
-    mode={globalState.language === 'javascript' ? 'typescript' : globalState.language}
+    ref={aceEditor}
+    mode={lang === 'javascript' ? 'typescript' : lang}
     theme={globalState.theme}
     onChange={onChange}
     value={value}
@@ -27,6 +34,7 @@ export default function Editor ({ value, id = 'my-ace-editor', onChange, showLin
     showGutter={true}
     highlightActiveLine={true}
     editorProps={{ $blockScrolling: true }}
+    commands={[]}
     setOptions={{
       enableBasicAutocompletion: true,
       enableLiveAutocompletion: true,
