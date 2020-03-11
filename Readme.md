@@ -1,11 +1,12 @@
-# PiJs: code playground for Javascript and typescript  
-Write and run
+# PiJs: code playground for Javascript, typescript and Go
+👍 Write and run
 
-### [Download for windows](https://github.com/haikelfazzani/pi-js/releases/download/v1.0.0-beta/pijs.Setup.1.0.0.exe)
+### [📑 Download for windows](https://github.com/haikelfazzani/pi-js/releases/download/v1.0.0-beta/pijs.Setup.1.0.0.exe)
 
 ### Languages
 - [x] Javascript (nodejs)
 - [x] Typescript
+- [x] Go
 
 ### Capture
 ![Capture](https://i.ibb.co/zQq6jBt/Nouvelle-image-bitmap.png)
