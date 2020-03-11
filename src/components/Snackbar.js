@@ -6,6 +6,5 @@ export default function Snackbar ({ msg, show, setShow, position = 'snack-center
     <span>{msg}</span>
     <span className="sn-btn-close" onClick={() => { setShow(false) }}>&times;</span>
     </div>
-
   </div>;
 }

@@ -1,10 +1,1 @@
-{
-  "usercode": "",
-  "language": "typescript",
-  "filename": "example.ts",
-  "fileExtension": ".ts",
-  "currfilepath": "temp",
-  "fontsize": "16",
-  "theme": "monokai",
-  "issaved": false
-}
+{"usercode":"console.log('ok')","language":"javascript","filename":null,"fileExtension":null,"currfilepath":"C:\\Users\\haike\\Documents\\2020\\electron\\pi-js\\main_process/temp","fontsize":"16","theme":"monokai","issaved":false,"wrapEnabled":false,"showPrintMargin":false,"autosave":false}

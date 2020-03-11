@@ -1,31 +1,27 @@
-# PiJs  
-Simple playground - Write and run
-
-- [Website repo](https://github.com/haikelfazzani/picode-website)
+# PiJs: code playground for Javascript and typescript  
+Write and run
 
 ### Languages
 - [x] Javascript (nodejs)
-- [x] Typescript (+required: ts-node installed globally)
-- [x] Python
-- [x] Go
+- [x] Typescript
 
 ### Capture
 ![Capture](https://i.ibb.co/zQq6jBt/Nouvelle-image-bitmap.png)
 
 ### Functionality
-- [x] Auto detect language using file extension (.ts, .js, .py, .go)
+- [x] Auto detect language using file extension
 - [x] themes (monokai, material, dracula)
-- [x] Format code (javascript/typescript)
-- [ ] Autosave
+- [x] Format code
+- [x] Autosave
 
 ### Logo
-![](icons/logo256.png)
+![](icons/logo.ico)
 
 ### Techs
 - Electron
 - React
 - Ace editor
-- JBeauty
+- JsBeauty
 
 ## Notes
 - All pull requests are welcome, feel free.

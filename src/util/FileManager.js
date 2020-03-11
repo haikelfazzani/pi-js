@@ -70,8 +70,8 @@ export default class FileManager {
   static async formatCode () {
     let tempFileContent = await this.loadFile();
     let lang = await JsonStore.getPropVal('language');
-    
-    return (lang !== 'python' || lang !== 'golang')
+
+    return tempFileContent
       ? js_beautify.js(tempFileContent, { indent_size: 2, space_in_empty_paren: true })
       : tempFileContent;
   }

@@ -14,14 +14,17 @@ export default class JsonStore {
       return this.store;
     } catch (error) {
       return {
-        "usercode": "",
+        "usercode": "console.log('ok')",
         "language": "javascript",
-        "filename": "",
-        "fileExtension": ".js",
-        "currfilepath": "",
+        "filename": null,
+        "fileExtension": null,
+        "currfilepath": (window.dirName + '/temp'),
         "fontsize": "16",
         "theme": "monokai",
-        "issaved": false
+        "issaved": false,
+        "wrapEnabled": false,
+        "showPrintMargin": false,
+        "autosave": false
       };
     }
   }

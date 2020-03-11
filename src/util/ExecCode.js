@@ -11,20 +11,6 @@ export default async function ExecCode () {
     let language = JsonStore.getPropVal('language');
 
     switch (language) {
-      case 'python':
-        execFile('python', [filePath], (error, stdout, stderr) => {
-          if (stderr) reject(stderr || error);
-          else resolve(stdout);
-        });
-        break;
-
-      case 'golang':
-        exec('go run ' + filePath, (error, stdout, stderr) => {
-          if (stderr) { reject(stderr || error); }
-          else resolve(stdout);
-        });
-        break;
-
       case 'javascript':
         execFile('node', [filePath], (err, stdout, stderr) => {
           if (stderr) reject(stderr || error);
@@ -34,6 +20,13 @@ export default async function ExecCode () {
 
       case 'typescript':
         exec('ts-node ' + filePath, (error, stdout, stderr) => {
+          if (stderr) { reject(stderr || error); }
+          else resolve(stdout);
+        });
+        break;
+
+      case 'golang':
+        exec('go run ' + filePath, (error, stdout, stderr) => {
           if (stderr) { reject(stderr || error); }
           else resolve(stdout);
         });

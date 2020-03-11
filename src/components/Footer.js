@@ -1,22 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/footer.scss';
-import GlobalContext from '../providers/GlobalContext';
 import Snackbar from './Snackbar';
-
-const fontSizes = ['10', '12', '14', '16', '18', '20', '22', '24'];
-const themes = ['monokai', 'material', 'dracula'];
+import Settings from '../containers/Settings';
 
 export default function Footer () {
 
-  const { globalState, setGlobalState } = useContext(GlobalContext);
+  const [showSettings, setShowSettings] = useState(false);
   const [isFileSaved, setIsFileSaved] = useState(false);
-
-  const onFontSize = (e) => {
-    setGlobalState({ ...globalState, fontsize: e.target.value });
-  }
-  const onTheme = (e) => {
-    setGlobalState({ ...globalState, theme: e.target.value });
-  }
 
   useEffect(() => {
     window.ipcRenderer.on('save-file', async (channel, isSaved) => {
@@ -26,20 +16,11 @@ export default function Footer () {
 
   return (<footer>
 
-    <div className="boxes">
-      <span>{globalState.fontsize}</span>
-      <span>{globalState.theme}</span>
-    </div>
+    <button onClick={() => { setShowSettings(!showSettings) }}>Settings</button>
 
-    <div>
-      <select onChange={onFontSize}>
-        {fontSizes.map(font => <option key={font} value={font}>{font}</option>)}
-      </select>
+    <p className="m-0 py-15">{new Date().toDateString()}</p>
 
-      <select onChange={onTheme}>
-        {themes.map(theme => <option key={theme} value={theme}>{theme}</option>)}
-      </select>
-    </div>
+    <Settings showSettings={showSettings} setShowSettings={setShowSettings} />
 
     <Snackbar
       msg="File is saved" show={isFileSaved}

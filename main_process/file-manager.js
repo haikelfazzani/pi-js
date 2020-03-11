@@ -17,12 +17,12 @@ module.exports = class FileManager {
 
       fileContent = await fsPromises.readFile(filePath, { encoding: 'utf8' });
       await fsPromises.writeFile(TEMP_FILE_PATH, fileContent, { encoding: 'utf8' });
-
+      
       await this.updateConfigFile({
-        'currfilepath': filePath,
-        'filename': fileName,
-        'fileExtension': fileExt,
-        'language': this.getLanguage(fileExt)
+        currfilepath: filePath,
+        filename: fileName,
+        fileExtension: fileExt,
+        language: this.getLanguage(fileExt)
       });
 
     } catch (error) {

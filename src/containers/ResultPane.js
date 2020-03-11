@@ -2,19 +2,20 @@ import React, { useState, useEffect } from 'react';
 import '../styles/ResultPane.scss';
 import Editor from '../components/Editor';
 import ExecCode from '../util/ExecCode';
+import GlobalContext from '../providers/GlobalContext';
 
 export default function ResultPane () {
 
   const [codeOutput, setCodeOutput] = useState();
 
   useEffect(() => {
-    window.ipcRenderer.on('run-code', async (channel, data) => {      
+    window.ipcRenderer.on('run-code', async (channel, data) => {
       try {
         let result = await ExecCode();
         setCodeOutput(result);
       } catch (error) {
         setCodeOutput(error);
-      }      
+      }
     });
   }, []);
 

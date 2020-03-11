@@ -1,0 +1,46 @@
+.settings {
+  width: 100%;
+  height: 100%;
+  background-color: #00000052;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.settings-content {
+  width: 400px;
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .1), 0 20px 20px rgba(0, 0, 0, .2);
+
+  .settings-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #212529;
+  
+    h4 {
+      margin: 0;
+      text-transform: uppercase;
+    }
+  
+    .btn-close-settings {
+      color: #a0a0a0;
+      cursor: pointer;
+      transition: color .3s;
+      &:hover {color: #ffffff;}
+    }
+  }
+
+  input {margin: 0;}
+  label {font-size: 12px;text-transform: uppercase;}
+  p { color: #a0a0a0 !important;}
+  select {width: 100%;padding: 5px 0;}
+}
