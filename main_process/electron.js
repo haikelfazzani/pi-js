@@ -4,7 +4,7 @@ const ctxMenu = require('./context-menu');
 const menuTemplate = require('./menu')
 
 let mainWindow;
-let isProd = false;
+let isProd = true;
 
 function createWindow () {
   mainWindow = new BrowserWindow({

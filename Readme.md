@@ -18,17 +18,20 @@ Simple playground - Write and run
 - [x] Format code (javascript/typescript)
 - [ ] Autosave
 
-## Notes
-- All pull requests are welcome, feel free.
-
-### Author
-- Haikel Fazzani
+### Logo
+![](icons/logo256.png)
 
 ### Techs
 - Electron
 - React
 - Ace editor
 - JBeauty
+
+## Notes
+- All pull requests are welcome, feel free.
+
+### Author
+- Haikel Fazzani
 
 ### License
 MIT
