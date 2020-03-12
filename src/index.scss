@@ -39,15 +39,15 @@ body {
 }
 
 
-#ace-editor,
-#my-ace-editor {
+.ace_editor,
+#my-ace-editor, #result-pane {
   height: 100% !important;
-  background-color: #252525;
+  background-color: inherit;
   overflow-x: hidden !important;
 }
 
 .ace_gutter {
-  background-color: #252525 !important;
+  background-color: inherit !important;
 }
 
 /* util */
