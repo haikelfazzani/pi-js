@@ -16,9 +16,9 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+  background-color: #272822;
   color: #ffffff;
   text-align: left;
-  background-color: #212529;
   overflow-x: hidden;
 }
 
@@ -34,15 +34,15 @@ body {
 }
 
 .gutter {
-  border-right: 1px solid #707070;
+  border-right: 1px solid #646464;
   cursor: col-resize;
+  &:hover { background-color: #2255ff; }
 }
 
 
 .ace_editor,
 #my-ace-editor, #result-pane {
   height: 100% !important;
-  background-color: inherit;
   overflow-x: hidden !important;
 }
 
